@@ -1,0 +1,2 @@
+# kafka-helm/values.yaml
+zookeeperConnect: "zookeeper-service.kafka.svc.cluster.local:2181"

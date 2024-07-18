@@ -1,0 +1,53 @@
+# Existing content...
+replicaCount: 1
+
+image:
+  repository: ymevaser/customer-management-api
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+# Ensure you have the following configured
+containerPort: 3000 # Replace with the port your app listens on
+
+# livenessProbe:
+#   httpGet:
+#     path: /healthz
+#     port: 80 # Replace with the correct port number
+
+# readinessProbe:
+#   httpGet:
+#     path: /readyz
+#     port: 80 # Replace with the correct port number
+
+service:
+  type: ClusterIP
+  port: 80
+
+# Add this part to your existing values.yaml content
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Specifies annotations to add to the service account
+  # annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  # name: ""
+ingress:
+  enabled: false
+  # annotations: {}
+  # hosts:
+  #   - host: chart-example.local
+  #     paths:
+  #     - path: /
+  #       pathType: ImplementationSpecific
+  # tls: []
+
+autoscaling:
+  enabled: false
+  # minReplicas: 1
+  # maxReplicas: 100
+  # targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# ... more values like resources, autoscaling, etc.

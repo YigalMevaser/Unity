@@ -1,0 +1,21 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: customer-management-api-deployment
+#   labels:
+#     app: customer-management-api
+# spec:
+#   replicas: 1 
+#   selector:
+#     matchLabels:
+#       app: customer-management-api
+#   template:
+#     metadata:
+#       labels:
+#         app: customer-management-api
+#     spec:
+#       containers:
+#       - name: customer-management-api
+#         image: ymevaser/customer-management-api:latest # Replace with your actual Docker image
+#         ports:
+#         - containerPort: 3000 # The port that your app runs on inside the container

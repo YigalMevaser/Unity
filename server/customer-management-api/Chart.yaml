@@ -1,0 +1,4 @@
+apiVersion: v2
+name: customer-management-api
+description: A Helm chart for the Customer Management API
+version: 0.1.0

@@ -1,0 +1,6 @@
+# kafka-helm/Chart.yaml
+apiVersion: v2
+name: kafka
+description: A Helm chart for deploying Kafka with Zookeeper
+version: 0.1.0
+appVersion: "1.0"
