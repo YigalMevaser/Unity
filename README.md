@@ -25,7 +25,7 @@ Consumes purchase messages from Kafka
 Stores purchase data in MongoDB
 Exposes a GET /purchases endpoint to retrieve all purchases
 
-4. MongoDB
+3. MongoDB
    
 Install MongoDB:
 
