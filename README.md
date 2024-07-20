@@ -5,7 +5,9 @@ This system allows users to make purchases and retrieve their purchase history. 
 
 ### 1. Customer Facing API
 Install the customer-facing API:
+
 helm install customer-facing-api ./customer-facing-api
+
 This API handles user requests and communicates with Kafka and the customer management API.
 Key functionalities:
 Exposes a POST /buy endpoint to process purchase requests
