@@ -14,7 +14,9 @@ Exposes a POST /buy endpoint to process purchase requests
 Sends purchase data to Kafka
 Exposes a GET /getAllUserBuys endpoint to retrieve all user purchases
 Communicates with the customer management API to fetch purchase data
+
 2. Customer Management API
+   
 Install the customer management API:
 helm install customer-management-api ./customer-management-api
 This API handles data management and interacts with Kafka and MongoDB.
@@ -22,7 +24,9 @@ Key functionalities:
 Consumes purchase messages from Kafka
 Stores purchase data in MongoDB
 Exposes a GET /purchases endpoint to retrieve all purchases
-3. MongoDB
+
+4. MongoDB
+   
 Install MongoDB:
 
 helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -30,6 +34,7 @@ helm install my-mongodb bitnami/mongodb --set auth.enabled=false
 MongoDB is used to store the purchase data.
 
 4. Kafka
+   
 Install Kafka:
 helm install my-kafka ./kafka-helm
 Kafka is used for message queuing between the customer-facing API and the customer management API.
