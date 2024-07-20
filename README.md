@@ -36,11 +36,18 @@ Verification and Testing
 
 Check the logs of all components to ensure there are no errors and all connections are established.
 
+ ![image](https://github.com/user-attachments/assets/ef749df9-a1b8-4f54-9e44-807edf1674ca)
+
+ ![image](https://github.com/user-attachments/assets/18665b9b-f878-4183-a6c8-3aa4c54c9eb8)
  
+![image](https://github.com/user-attachments/assets/94ba9c88-8a02-4a73-adbc-4929a6479cdf)
+
  
+
  
 Port forward the customer-facing API:
- 
+ ![image](https://github.com/user-attachments/assets/2a40ed9e-8142-4882-891c-cc87579a2f47)
+
 kubectl port-forward service/customer-facing-api 3001:3001
 
 Test the purchase functionality:
@@ -56,12 +63,14 @@ The customer management API consumes the message from Kafka
 The purchase data is then stored in MongoDB
 
 You should receive a 200 status code with the message "Purchase sent successfully".
- 
+ ![image](https://github.com/user-attachments/assets/a83279ea-380f-4891-b435-e3f7c9411ca1)
+
 Verify data in MongoDB:
 
 Port forward MongoDB and check that the purchase data has been created
 
- 
+ ![image](https://github.com/user-attachments/assets/f626a778-038d-433d-a45d-b2fcec9a34c2)
+
 
 
 Test retrieving all user purchases:
@@ -76,7 +85,8 @@ The customer management API retrieves all purchases from MongoDB
 The data is sent back through the customer-facing API to the client
 
 You should receive a JSON array containing all user purchases.
- 
+ ![image](https://github.com/user-attachments/assets/fe12f92d-7b51-406a-9b69-4592527b92cb)
+
 Troubleshooting
 If you encounter any issues:
 
