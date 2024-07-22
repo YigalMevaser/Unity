@@ -96,25 +96,25 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: customer-facing-api
-        path: ./artifacts/client/customer-facing-api
+        path: ./client/customer-facing-api
 
     - name: Download Customer Management API Artifact
       uses: actions/download-artifact@v2
       with:
         name: customer-management-api
-        path: ./artifacts/server/customer-management-api
+        path: ./server/customer-management-api
 
     - name: Download Kafka Artifact
       uses: actions/download-artifact@v2
       with:
         name: Kafka
-        path: ./artifacts/kafka-helm
+        path: ./kafka-helm
 
     - name: Download MongoDB Artifact
       uses: actions/download-artifact@v2
       with:
         name: MongoDB
-        path: ./artifacts/mongodb/my-mongodb
+        path: ./mongodb/my-mongodb
 
     - name: Load Docker Images
       run: |
@@ -123,14 +123,14 @@ jobs:
 
     - name: Deploy Docker Containers
       run: |
-        docker run -d --name customer-facing-api -p 80:80 your-docker-hub-username/customer-facing-api
-        docker run -d --name customer-management-api -p 81:80 your-docker-hub-username/customer-management-api
+        docker run -d --name customer-facing-api -p 80:80 ymevaser/customer-facing-api
+        docker run -d --name customer-management-api -p 81:80 ymevaser/customer-management-api
 
     - name: Deploy Kafka with Helm
       run: |
         helm repo add myrepo https://my.chart.repo
-        helm install kafka ./artifacts/kafka-helm/kafka-chart.tar.gz
+        helm install kafka ./kafka-helm/kafka-chart.tar.gz
 
     - name: Deploy MongoDB with Helm
       run: |
-        helm install mongodb ./artifacts/mongodb/my-mongodb/mongodb-chart.tar.gz
+        helm install mongodb ./mongodb/my-mongodb/mongodb-chart.tar.gz
