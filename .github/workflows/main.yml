@@ -27,13 +27,14 @@ jobs:
 
     - name: Install Dependencies for Kafka
       run: helm dependency update ./kafka-helm
+     
+    - name: Update Helm Repositories
+      run: helm repo add "stable" "https://charts.helm.sh/stable" 
+    
 
     - name: Update Helm Repositories
       run: helm init
 
-
-    - name: Update Helm Repositories
-      run: helm repo add "stable" "https://charts.helm.sh/stable"
     
 
     - name: Install Dependencies for MongoDB
