@@ -29,7 +29,7 @@ jobs:
       run: helm dependency update ./kafka-helm
 
     - name: Update Helm Repositories
-      run: helm init --client-only
+      run: helm init
 
 
     - name: Update Helm Repositories
