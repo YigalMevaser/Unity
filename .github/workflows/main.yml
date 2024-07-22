@@ -29,11 +29,7 @@ jobs:
       run: helm dependency update ./kafka-helm
      
     - name: Update Helm Repositories
-      run: helm repo add "stable" "https://charts.helm.sh/stable" 
-    
-
-    - name: Update Helm Repositories
-      run: helm init
+      run: helm init --stable-repo-url=https://charts.helm.sh/stable --client-only
 
     
 
