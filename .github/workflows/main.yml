@@ -20,10 +20,10 @@ jobs:
       uses: azure/setup-helm@v1
 
     - name: Install Dependencies for Customer Facing API
-      run: helm dependency update ./customer-facing-api
+      run: helm dependency update ./client/customer-facing-api
 
     - name: Install Dependencies for Customer Management API
-      run: helm dependency update ./customer-management-api
+      run: helm dependency update ./server/customer-management-api
 
     - name: Build Customer Facing API
       run: |
