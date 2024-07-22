@@ -25,6 +25,9 @@ jobs:
     - name: Install Dependencies for Customer Management API
       run: helm dependency update ./server/customer-management-api
 
+    - name: Install Dependencies for Kafka
+      run: helm dependency update ./kafka-helm  
+
     - name: Build Customer Facing API
       run: |
         # Replace the next line with the actual build command for your API
@@ -34,6 +37,11 @@ jobs:
       run: |
         # Replace the next line with the actual build command for your API
         echo "Building Customer Management API..."
+
+    - name: Build Kafka
+      run: |
+        # Replace the next line with the actual build command for your API
+        echo "Building Kafka"    
 
     # If there are tests or other checks, include them here
 
@@ -48,3 +56,9 @@ jobs:
       with:
         name: customer-management-api
         path: ./server/customer-management-api
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Kafka
+        path: ./kafka-helm   
