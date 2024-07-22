@@ -26,7 +26,10 @@ jobs:
       run: helm dependency update ./server/customer-management-api
 
     - name: Install Dependencies for Kafka
-      run: helm dependency update ./kafka-helm  
+      run: helm dependency update ./kafka-helm
+
+    - name: Install Dependencies for MongoDB
+      run: helm dependency update ./mongodb/my-mongodb   
 
     - name: Build Customer Facing API
       run: |
@@ -42,6 +45,11 @@ jobs:
       run: |
         # Replace the next line with the actual build command for your API
         echo "Building Kafka"    
+
+    - name: Build MongoDB
+      run: |
+        # Replace the next line with the actual build command for your API
+        echo "Building MongoDB"    
 
     # If there are tests or other checks, include them here
 
@@ -61,4 +69,10 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Kafka
-        path: ./kafka-helm   
+        path: ./kafka-helm
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MongoDB
+        path: ./mongodb/my-mongodb          
