@@ -19,12 +19,6 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
 
-    - name: Add Bitnami Repository
-      run: helm repo add bitnami https://charts.bitnami.com/bitnami
-
-    - name: Update Helm Repositories
-      run: helm repo update
-
     - name: Install Dependencies for Customer Facing API
       run: helm dependency update ./client/customer-facing-api
 
