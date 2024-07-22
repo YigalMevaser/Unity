@@ -31,7 +31,9 @@ jobs:
     - name: Update Helm Repositories
       run: helm init --stable-repo-url=https://charts.helm.sh/stable
 
-    
+    - name: Update Helm Repositories
+      run: helm repo add bitnami https://charts.bitnami.com/bitnami
+          
 
     - name: Install Dependencies for MongoDB
       run: helm dependency update ./mongodb/my-mongodb   
