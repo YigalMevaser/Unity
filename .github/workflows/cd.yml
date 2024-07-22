@@ -25,25 +25,25 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: kafka
-        path: ./artifacts
+        path: ./kafka-helm
 
     - name: Download MongoDB Artifact
       uses: actions/download-artifact@v2
       with:
         name: mongodb
-        path: ./artifacts
+        path: ./mongodb/my-mongodb
 
     - name: Download customer-facing-api Artifact
       uses: actions/download-artifact@v2
       with:
         name: customer-facing-api
-        path: ./artifacts
+        path: ./client/customer-facing-api
 
     - name: Download customer-management-api Artifact
       uses: actions/download-artifact@v2
       with:
         name: customer-management-api
-        path: ./artifacts
+        path: ./server/customer-management-api
 
     # Assume the customer-facing-api and customer-management-api are Docker images
     - name: Load Docker Images
