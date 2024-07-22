@@ -1,8 +1,9 @@
 name: Continuous Deployment
 
-on:
+on: 
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   deploy:
