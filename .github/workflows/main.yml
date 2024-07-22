@@ -28,6 +28,9 @@ jobs:
     - name: Install Dependencies for Kafka
       run: helm dependency update ./kafka-helm
 
+    - name: Add Bitnami Helm Repository
+      run: helm repo add bitnami https://charts.bitnami.com/bitnami
+
     - name: Install Dependencies for MongoDB
       run: helm dependency update ./mongodb/my-mongodb   
 
