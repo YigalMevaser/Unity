@@ -2,15 +2,15 @@ name: Continuous Integration
 
 on:
   push:
-      branches:
-        - develop
-      paths-ignore:
-        - '.github/workflows/cd.yml'
+    branches:
+      - develop
   pull_request:
     branches:
       - develop
     paths-ignore:
-      - '.github/workflows/cd.yml'
+      - '.github/workflows/cd.yml'  
+  workflow_dispatch:
+    
 
 jobs:
   build:
