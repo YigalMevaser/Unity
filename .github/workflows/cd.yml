@@ -1,9 +1,16 @@
 name: Continuous Deployment
 
-on: 
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
   release:
     types: [published]
   workflow_dispatch:
+
 
 jobs:
   deploy:
