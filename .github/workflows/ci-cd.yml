@@ -84,6 +84,18 @@ jobs:
         name: MongoDB
         path: ./mongodb/my-mongodb
 
+    - name: List Artifacts
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            run_id: context.runId,
+          });
+          console.log('Artifacts:', JSON.stringify(artifacts.data, null, 2));
+
   deploy:
     needs: build
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.stage == 'deploy' || github.event.inputs.stage == 'all'
