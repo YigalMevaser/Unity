@@ -1,10 +1,8 @@
-# templates/hpa.yaml
-
 {{- if .Values.autoscaling.enabled }}
-apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscaler
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
 metadata:
-  name: {{ include "customer-management-api.fullname" . }}
+  name: {{ include "customer-management-api.fullname" . }}-scaler
   labels:
     {{- include "customer-management-api.labels" . | nindent 4 }}
 spec:
@@ -12,10 +10,13 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "customer-management-api.fullname" . }}
-  minReplicas: {{ .Values.autoscaling.minReplicas }}
-  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
-  targetCPUUtilizationPercentage: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
-  {{- if .Values.autoscaling.targetMemoryUtilizationPercentage }}
-  targetMemoryUtilizationPercentage: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
-  {{- end }}
+  minReplicaCount: {{ .Values.autoscaling.minReplicas }}
+  maxReplicaCount: {{ .Values.autoscaling.maxReplicas }}
+  triggers:
+  - type: kafka
+    metadata:
+      bootstrapServers: {{ .Values.kafka.bootstrapServers }}
+      topic: {{ .Values.kafka.topic }}
+      consumerGroup: {{ .Values.kafka.consumerGroup }}
+      lagThreshold: "{{ .Values.autoscaling.lagThreshold }}"
 {{- end }}
