@@ -24,13 +24,13 @@ jobs:
     - name: Download Kafka Artifact
       uses: actions/download-artifact@v2
       with:
-        name: kafka
+        name: Kafka
         path: ./kafka-helm
 
     - name: Download MongoDB Artifact
       uses: actions/download-artifact@v2
       with:
-        name: mongodb
+        name: MongoDB
         path: ./mongodb/my-mongodb
 
     - name: Download customer-facing-api Artifact
