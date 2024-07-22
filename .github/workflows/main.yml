@@ -19,8 +19,11 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
 
-    - name: Check Helm Version
-      run: helm version
+    - name: Add Bitnami Repository
+      run: helm repo add bitnami https://charts.bitnami.com/bitnami
+
+    - name: Update Helm Repositories
+      run: helm repo update
 
     - name: Install Dependencies for Customer Facing API
       run: helm dependency update ./client/customer-facing-api
@@ -30,9 +33,6 @@ jobs:
 
     - name: Install Dependencies for Kafka
       run: helm dependency update ./kafka-helm
-
-    - name: Add Bitnami Helm Repository
-      run: helm repo add bitnami https://charts.bitnami.com/bitnami
 
     - name: Install Dependencies for MongoDB
       run: helm dependency update ./mongodb/my-mongodb   
