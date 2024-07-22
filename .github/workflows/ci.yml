@@ -28,12 +28,14 @@ jobs:
     - name: Install Dependencies for Kafka
       run: helm dependency update ./kafka-helm
      
-    - name: Update Helm Repositories
+    - name: Init Helm Repositories
       run: helm init --stable-repo-url=https://charts.helm.sh/stable
 
-    - name: Update Helm Repositories
+    - name: Add Helm Repositories
       run: helm repo add bitnami https://charts.bitnami.com/bitnami
-          
+
+    - name: update Helm Repositories
+      run: helm repo update      
 
     - name: Install Dependencies for MongoDB
       run: helm dependency update ./mongodb/my-mongodb   
@@ -61,25 +63,25 @@ jobs:
     # If there are tests or other checks, include them here
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: customer-facing-api
         path: ./client/customer-facing-api
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: customer-management-api
         path: ./server/customer-management-api
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: Kafka
         path: ./kafka-helm
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MongoDB
         path: ./mongodb/my-mongodb          
