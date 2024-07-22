@@ -46,19 +46,19 @@ jobs:
     # If there are tests or other checks, include them here
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: customer-facing-api
         path: ./client/customer-facing-api
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: customer-management-api
         path: ./server/customer-management-api
 
     - name: Publish Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: Kafka
         path: ./kafka-helm   
