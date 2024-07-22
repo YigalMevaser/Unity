@@ -41,10 +41,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: customer-facing-api
-        path: ./client/customer-facing-api/artifact
+        path: ./client/customer-facing-api
 
     - name: Publish Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: customer-management-api
-        path: ./server/customer-management-api/artifact
+        path: ./server/customer-management-api
