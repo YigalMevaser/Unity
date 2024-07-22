@@ -19,6 +19,9 @@ jobs:
     - name: Set up Helm
       uses: azure/setup-helm@v1
 
+    - name: Check Helm Version
+      run: helm version
+
     - name: Install Dependencies for Customer Facing API
       run: helm dependency update ./client/customer-facing-api
 
