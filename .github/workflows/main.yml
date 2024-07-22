@@ -1,0 +1,50 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Helm
+      uses: azure/setup-helm@v1
+
+    - name: Install Dependencies for Customer Facing API
+      run: helm dependency update ./customer-facing-api
+
+    - name: Install Dependencies for Customer Management API
+      run: helm dependency update ./customer-management-api
+
+    - name: Build Customer Facing API
+      run: |
+        # Replace the next line with the actual build command for your API
+        echo "Building Customer Facing API..."
+
+    - name: Build Customer Management API
+      run: |
+        # Replace the next line with the actual build command for your API
+        echo "Building Customer Management API..."
+
+    # If there are tests or other checks, include them here
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: customer-facing-api
+        path: ./client/customer-facing-api/artifact
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: customer-management-api
+        path: ./server/customer-management-api/artifact
