@@ -750,6 +750,7 @@ pdb:
 ## Service parameters
 ##
 service:
+  port: 27017
   ## @param service.nameOverride MongoDB(&reg;) service name
   ##
   nameOverride: ""
