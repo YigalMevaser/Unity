@@ -19,7 +19,7 @@ on:
 jobs:
   build:
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.stage == 'build' || github.event.inputs.stage == 'all'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted #ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -98,7 +98,7 @@ jobs:
   deploy:
     needs: build  # Ensure the deploy job runs after the build job
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.stage == 'deploy' || github.event.inputs.stage == 'all'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted #ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
