@@ -157,10 +157,13 @@ jobs:
 
       - name: Delete existing MongoDB resources
         run: |
-          kubectl delete serviceaccount mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete service mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete deployment mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete pvc mongodb --force --grace-period=0 --ignore-not-found
+          kubectl delete serviceaccount mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+          kubectl delete service mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+          kubectl delete deployment mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+          kubectl delete pvc --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+          kubectl delete configmap --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+          kubectl delete secret --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+
 
       - name: Deploy MongoDB with Helm
         run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
