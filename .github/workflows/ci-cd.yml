@@ -156,7 +156,7 @@ jobs:
         run: helm upgrade --install kafka ./kafka-helm
 
       - name: Deploy MongoDB with Helm
-        run: helm upgrade --install mongodb ./mongodb/my-mongodb
+        run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
 
       - name: Clean Up Artifacts
         run: |
