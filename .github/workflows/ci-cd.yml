@@ -162,7 +162,7 @@ jobs:
           kubectl delete service mongodb --ignore-not-found
 
       - name: Deploy MongoDB with Helm
-        run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
+        run: helm upgrade --install mongodb ./mongodb/my-mongodb #--force
 
       - name: Clean Up Artifacts
         run: |
