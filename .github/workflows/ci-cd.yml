@@ -104,7 +104,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Download Customer Facing API Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: customer-facing-api
           path: ./client/customer-facing-api
@@ -113,19 +113,19 @@ jobs:
         run: ls -R ./client/customer-facing-api
 
       - name: Download Customer Management API Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: customer-management-api
           path: ./server/customer-management-api
 
       - name: Download Kafka Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: kafka-helm
           path: ./kafka-helm
 
       - name: Download MongoDB Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: mongodb
           path: ./mongodb/my-mongodb
