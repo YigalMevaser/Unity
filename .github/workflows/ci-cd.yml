@@ -155,6 +155,12 @@ jobs:
       - name: Deploy Kafka with Helm
         run: helm upgrade --install kafka ./kafka-helm
 
+      - name: Delete existing MongoDB resources
+        run: |
+          kubectl delete pvc mongodb --ignore-not-found
+          kubectl delete deployment mongodb --ignore-not-found
+          kubectl delete service mongodb --ignore-not-found
+
       - name: Deploy MongoDB with Helm
         run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
 
