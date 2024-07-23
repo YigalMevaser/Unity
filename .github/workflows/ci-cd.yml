@@ -144,12 +144,11 @@ jobs:
 
       - name: Deploy Docker Containers
         run: |
-          docker run -d --name customer-facing-api -p 80:80 your-docker-hub-username/customer-facing-api
-          docker run -d --name customer-management-api -p 81:80 your-docker-hub-username/customer-management-api
+          docker run -d --name customer-facing-api -p 80:80 ymevaser/customer-facing-api
+          docker run -d --name customer-management-api -p 81:80 ymevaser/customer-management-api
 
       - name: Deploy Kafka with Helm
         run: |
-          helm repo add myrepo https://my.chart.repo
           helm install kafka ./kafka-helm
 
       - name: Deploy MongoDB with Helm
