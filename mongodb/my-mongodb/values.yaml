@@ -154,3 +154,8 @@ service:
       
       externalTrafficPolicy: Local
       
+
+serviceAccount:
+  ## @param serviceAccount.create Enable creation of ServiceAccount for MongoDB(&reg;) pods
+  ##
+  create: true      
