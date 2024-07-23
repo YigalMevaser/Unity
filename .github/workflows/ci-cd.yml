@@ -159,4 +159,5 @@ jobs:
         run: helm upgrade --install mongodb ./mongodb/my-mongodb
 
       - name: Clean Up Artifacts
-        run: rm -rf ./client/customer-facing-api ./server/customer-management-api ./kafka-helm ./mongodb/my-mongodb
+        run: |
+          Remove-Item -Path "./client/customer-facing-api", "./server/customer-management-api", "./kafka-helm", "./mongodb/my-mongodb" -Recurse -Force -ErrorAction SilentlyContinue
