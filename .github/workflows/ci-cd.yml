@@ -164,6 +164,8 @@ jobs:
           kubectl delete configmap --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
           kubectl delete secret --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
 
+      - name: Wait for resources to be deleted
+        run: sleep 30
 
       - name: Deploy MongoDB with Helm
         run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
