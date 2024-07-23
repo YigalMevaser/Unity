@@ -1,14 +1,14 @@
 
 
-nameOverride: ""
-## @param fullnameOverride String to fully override mongodb.fullname template
-##
-fullnameOverride: ""
-## @param namespaceOverride String to fully override common.names.namespace
-##
-namespaceOverride: ""
-## @param kubeVersion Force target Kubernetes version (using Helm capabilities if not set)
-##
+# nameOverride: ""
+# ## @param fullnameOverride String to fully override mongodb.fullname template
+# ##
+# fullnameOverride: ""
+# ## @param namespaceOverride String to fully override common.names.namespace
+# ##
+# namespaceOverride: ""
+# ## @param kubeVersion Force target Kubernetes version (using Helm capabilities if not set)
+# ##
 
 image:
   registry: docker.io
