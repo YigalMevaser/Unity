@@ -158,4 +158,7 @@ service:
 serviceAccount:
   ## @param serviceAccount.create Enable creation of ServiceAccount for MongoDB(&reg;) pods
   ##
-  create: true      
+  create: true
+
+ingress:
+  enabled: false
