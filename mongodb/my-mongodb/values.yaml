@@ -37,10 +37,10 @@ global:
 
 ## @param nameOverride String to partially override mongodb.fullname template (will maintain the release name)
 ##
-nameOverride: "mongodb"
+nameOverride: ""
 ## @param fullnameOverride String to fully override mongodb.fullname template
 ##
-fullnameOverride: ""
+fullnameOverride: "mongodb"
 ## @param namespaceOverride String to fully override common.names.namespace
 ##
 namespaceOverride: ""
