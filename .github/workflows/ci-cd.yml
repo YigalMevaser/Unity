@@ -19,7 +19,7 @@ on:
 jobs:
   build:
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.stage == 'build' || github.event.inputs.stage == 'all'
-    runs-on: self-hosted #ubuntu-latest
+    runs-on: self-hosted # Change to self-hosted to use your Docker Desktop environment
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -35,9 +35,6 @@ jobs:
 
       - name: Install Dependencies for Kafka
         run: helm dependency update ./kafka-helm
-
-      - name: Init Helm Repositories
-        run: helm init --stable-repo-url=https://charts.helm.sh/stable
 
       - name: Add Helm Repositories
         run: helm repo add bitnami https://charts.bitnami.com/bitnami
@@ -55,31 +52,31 @@ jobs:
         run: echo "Building Customer Management API..."
 
       - name: Build Kafka
-        run: echo "Building Kafka"    
+        run: echo "Building Kafka"
 
       - name: Build MongoDB
-        run: echo "Building MongoDB"    
+        run: echo "Building MongoDB"
 
       - name: Publish Customer Facing API Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: customer-facing-api
           path: ./client/customer-facing-api
 
       - name: Publish Customer Management API Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: customer-management-api
           path: ./server/customer-management-api
 
       - name: Publish Kafka Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: kafka-helm
           path: ./kafka-helm
 
       - name: Publish MongoDB Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: mongodb
           path: ./mongodb/my-mongodb
@@ -98,13 +95,13 @@ jobs:
   deploy:
     needs: build  # Ensure the deploy job runs after the build job
     if: github.event_name != 'workflow_dispatch' || github.event.inputs.stage == 'deploy' || github.event.inputs.stage == 'all'
-    runs-on: self-hosted #ubuntu-latest
+    runs-on: self-hosted # Ensure the runner can access your local Kubernetes cluster
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Download Customer Facing API Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: customer-facing-api
           path: ./client/customer-facing-api
@@ -113,19 +110,19 @@ jobs:
         run: ls -R ./client/customer-facing-api
 
       - name: Download Customer Management API Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: customer-management-api
           path: ./server/customer-management-api
 
       - name: Download Kafka Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: kafka-helm
           path: ./kafka-helm
 
       - name: Download MongoDB Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v2
         with:
           name: mongodb
           path: ./mongodb/my-mongodb
@@ -137,23 +134,17 @@ jobs:
           ls -R ./kafka-helm
           ls -R ./mongodb/my-mongodb
 
-      - name: Pull Docker Images
-        run: |
-          docker pull ymevaser/customer-facing-api
-          docker pull ymevaser/customer-management-api
+      - name: Deploy Customer Facing API with Helm
+        run: helm upgrade --install customer-facing-api ./client/customer-facing-api
 
-      - name: Deploy Docker Containers
-        run: |
-          docker run -d --name customer-facing-api -p 80:80 ymevaser/customer-facing-api
-          docker run -d --name customer-management-api -p 81:80 ymevaser/customer-management-api
+      - name: Deploy Customer Management API with Helm
+        run: helm upgrade --install customer-management-api ./server/customer-management-api
 
       - name: Deploy Kafka with Helm
-        run: |
-          helm install kafka ./kafka-helm
+        run: helm upgrade --install kafka ./kafka-helm
 
       - name: Deploy MongoDB with Helm
-        run: |
-          helm install mongodb ./mongodb/my-mongodb
+        run: helm upgrade --install mongodb ./mongodb/my-mongodb
 
       - name: Clean Up Artifacts
         run: rm -rf ./client/customer-facing-api ./server/customer-management-api ./kafka-helm ./mongodb/my-mongodb
