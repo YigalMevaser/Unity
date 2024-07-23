@@ -1154,6 +1154,10 @@ networkPolicy:
   ## ingressPodMatchLabels:
   ##   my-client: "true"
   #
+autoscaling:
+  enabled: false
+  
+    
 ingress:
   enabled: false
 
