@@ -1154,6 +1154,9 @@ networkPolicy:
   ## ingressPodMatchLabels:
   ##   my-client: "true"
   #
+ingress:
+  enabled: false
+
   ingressPodMatchLabels: {}
   ## @param networkPolicy.ingressNSMatchLabels [object] Labels to match to allow traffic from other namespaces. Ignored if `networkPolicy.allowExternal` is true.
   ## @param networkPolicy.ingressNSPodMatchLabels [object] Pod labels to match to allow traffic from other namespaces. Ignored if `networkPolicy.allowExternal` is true.
