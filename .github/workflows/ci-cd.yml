@@ -139,8 +139,8 @@ jobs:
 
       - name: Pull Docker Images
         run: |
-          docker pull your-docker-hub-username/customer-facing-api
-          docker pull your-docker-hub-username/customer-management-api
+          docker pull ymevaser/customer-facing-api
+          docker pull ymevaser/customer-management-api
 
       - name: Deploy Docker Containers
         run: |
