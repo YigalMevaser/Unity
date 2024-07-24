@@ -51,3 +51,8 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # ... more values like resources, autoscaling, etc.
+
+
+# env:
+#   - name: MONGO_URI
+#     value: mongodb://mongo:27017/purchases
