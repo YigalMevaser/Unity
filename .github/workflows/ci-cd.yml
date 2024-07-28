@@ -167,8 +167,8 @@ jobs:
       # - name: Wait for resources to be deleted
       #   run: sleep 30
 
-      - name: Deploy MongoDB with Helm
-        run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
+      # - name: Deploy MongoDB with Helm
+      #   run: helm upgrade --install mongodb ./mongodb/my-mongodb --force
 
       - name: Clean Up Artifacts
         run: |
