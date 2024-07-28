@@ -155,14 +155,14 @@ jobs:
       - name: Deploy Kafka with Helm
         run: helm upgrade --install kafka ./kafka-helm
 
-      - name: Delete existing MongoDB resources
-        run: |
-          kubectl delete serviceaccount mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete service mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete deployment mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete pvc --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete configmap --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
-          kubectl delete secret --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+      # - name: Delete existing MongoDB resources
+      #   run: |
+      #     kubectl delete serviceaccount mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+      #     kubectl delete service mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+      #     kubectl delete deployment mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+      #     kubectl delete pvc --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+      #     kubectl delete configmap --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
+      #     kubectl delete secret --selector app=mongodb --namespace mongodb --force --grace-period=0 --ignore-not-found
 
       # - name: Wait for resources to be deleted
       #   run: sleep 30
