@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-facing-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/YigalMevaser/Unity.git
+    path: ./client/customer-facing-api
+    targetRevision: develop
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
