@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/YigalMevaser/Unity.git
-    path: './client'
+    path: ./client/customer-facing-api
     targetRevision: develop
   destination:
     server: https://kubernetes.default.svc
